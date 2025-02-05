@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CheckoutCollectionType, Customer } from "../types/checkout"
 import CheckoutCollection from "./CheckoutCollection"
 import './CheckoutCollectionsGrid.css'
@@ -58,48 +58,35 @@ function CheckoutCollectionsGrid({ collections }: { collections: CheckoutCollect
     // 3) Also we want to decrease product quantity for each collection FIRST Customer
     //    every 1 second
 
-    // useEffect(() => {
-    //     const checkoutTimer = setInterval(() => {
-    //         console.log('test')
-    //         setDynamicCollections((prevState) => {
-    //             return prevState.map(prevCollectionState => {
-    //                 if (!prevCollectionState.customers.length) {
-    //                     return prevCollectionState;
-    //                 }
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDynamicCollections((prevState) => {
+                return prevState.map(prevCollectionState => {
+                    if (!prevCollectionState.customers.length) {
+                        return prevCollectionState;
+                    }
 
-    //                 const firstCustomer = prevCollectionState.customers[0];
-    //                 const updatedCustomersList = [...prevCollectionState.customers];
+                    const firstCustomer = prevCollectionState.customers[0];
+                    const updatedCustomersList = [...prevCollectionState.customers];
 
-    //                 // if customer has last item in the basket
-    //                 // we should remove him from the queue
-    //                 if (firstCustomer.productsQuantity === 1) {
-    //                     updatedCustomersList.shift();
-    //                     return { ...prevCollectionState, customers: updatedCustomersList };
-    //                 }
+                    // if customer has last item in the basket
+                    // we should remove him from the queue
+                    if (firstCustomer.productsQuantity === 1) {
+                        updatedCustomersList.shift();
+                        return { ...prevCollectionState, customers: updatedCustomersList };
+                    }
 
-    //                 const updatedCustomer = { ...firstCustomer, productsQuantity: firstCustomer.productsQuantity - 1 };
-    //                 updatedCustomersList[0] = updatedCustomer;
-    //                 return { ...prevCollectionState, customers: updatedCustomersList };
-    //             });
-    //         })
-    //     }, 5500);
+                    const updatedCustomer = { ...firstCustomer, productsQuantity: firstCustomer.productsQuantity - 1 };
+                    updatedCustomersList[0] = updatedCustomer;
+                    return { ...prevCollectionState, customers: updatedCustomersList };
+                });
+            })
+        }, 500);
 
-    //     let hasSomeoneWaitingForCheckout = false;
-    //     dynamicCollections.forEach(col => {
-    //         if (col.customers.length) {
-    //             hasSomeoneWaitingForCheckout = true;
-    //         }
-    //     })
-
-    //     if (!hasSomeoneWaitingForCheckout) {
-    //         clearInterval(checkoutTimer);
-    //     }
-
-    //     return () => {
-    //         clearInterval(checkoutTimer)
-    //     }
-    // }, [])
-
+        return () => {
+            clearInterval(interval)
+        }
+    }, []);
 
     return (
         <>
