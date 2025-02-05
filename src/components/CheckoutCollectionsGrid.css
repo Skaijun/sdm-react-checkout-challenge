@@ -1,0 +1,38 @@
+.checkout-collections {
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  gap: 10px;
+
+  margin-top: 2rem;
+}
+
+.control-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 5rem;
+}
+
+.control-section input {
+  border: 0.1rem solid tomato;
+  background-color: rgb(206, 206, 163);
+  border-radius: 0.5rem;
+  padding: 1rem 1rem;
+  color: blueviolet;
+  font-size: large;
+  font-weight: 700;
+  width: 50%;
+}
+
+.control-section button {
+  color: rgb(206, 206, 163);
+  padding: 1rem 3rem;
+  background-color: blueviolet;
+  font-size: large;
+  font-weight: 700;
+  border: 0.1rem solid blueviolet;
+}
+
+.control-section button:hover {
+  color: tomato;
+  border: 0.1rem solid tomato;
+}

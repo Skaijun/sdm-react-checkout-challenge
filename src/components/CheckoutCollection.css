@@ -1,0 +1,16 @@
+.checkout-collections__item .quantity {
+  background-color: hotpink;
+  padding: 2px 5px;
+  margin-left: 0.5rem;
+  color: black;
+  font-size: large;
+  font-weight: 600;
+}
+
+.checkout-collections__item .customer {
+  margin-bottom: 1rem;
+}
+
+.checkout-collections__item .customer:hover {
+  color: tomato;
+}

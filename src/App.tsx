@@ -1,33 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { CheckoutCollectionType } from './types/checkout';
+import CheckoutCollectionsGrid from './components/CheckoutCollectionsGrid';
+
+const initData: CheckoutCollectionType[] = [
+  {
+    name: 'Checkout Collection 1',
+    customers: [
+      {
+        name: "John Doe",
+        productsQuantity: 3
+      },
+      {
+        name: "Marry Jane",
+        productsQuantity: 1
+      }
+    ]
+  },
+  {
+    name: 'Checkout Collection 2',
+    customers: [
+      {
+        name: "Herman Smith",
+        productsQuantity: 4
+      }
+    ]
+  },
+  {
+    name: 'Checkout Collection 3',
+    customers: [
+      {
+        name: "Bob",
+        productsQuantity: 13
+      },
+      {
+        name: "Sam",
+        productsQuantity: 5
+      },
+      {
+        name: "Santa",
+        productsQuantity: 9
+      },
+    ]
+  },
+  {
+    name: 'Checkout Collection 4',
+    customers: [
+      {
+        name: "Fourtuner",
+        productsQuantity: 2
+      }
+    ]
+  },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Checkout Challenge</h1>
+      <CheckoutCollectionsGrid collections={initData} />
     </>
   )
 }
